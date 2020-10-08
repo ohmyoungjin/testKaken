@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="guest">	
+
+	<insert id="add">
+	  insert into guest
+	  values(#{sabun}, #{name}, #{title}, sysdate, #{pay}, 0, #{email} )
+	</insert>
+
+	<select id="selectAll" resultType="net.hb.crud.BoardDTO">
+		select rownum rn,g.* from (select*from guest order by sabun)g order by rn
+	</select>
+	
+	<select id="countAll" resultType="int">
+		select count(*) cnt from guest
+	</select>
+	
+	<select id="detail" parameterType="int" resultType="net.hb.crud.BoardDTO">
+		select*from guest where sabun = #{sabun}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
